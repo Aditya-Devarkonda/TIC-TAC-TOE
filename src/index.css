@@ -13,15 +13,25 @@ body {
   justify-content: center;
 }
 
-/* #root{
-  width: 49%;
-  height: 90%;
-} */
+#root, .game-layout{
+  width: 100%;
+  height: 100vh;
+}
 
 .game-layout{
+  display: grid;
+  grid-template-columns: 1fr 1.5fr 1fr;
+}
+
+.main-area{
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content:space-evenly;
+}
+
+.winner-announcement{
+  font-size: 35px;
 }
 
 .board-table{
@@ -37,7 +47,7 @@ body {
 }
 
 .square{
-  background-color: white;
+  background-color: rgba(255, 192, 203, 0.448);
   border: none;
   border-right: 5px solid black;
   border-bottom: 5px solid black;
@@ -56,13 +66,20 @@ body {
 }
 
 .square:hover {
-  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4); /*Add an inset shadow effect on hover*/
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5); /*Add an inset shadow effect on hover*/
 }
 
-.reset-button{
-  margin-top: 15px;
+.All-buttons{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.reset{
+  /* margin-top: 65px; */
   height: 45px;
-  width: 35%;
+  width: 180px;
   font-size: 20px;
   background-color: rgba(100, 148, 237, 0.442);
   border: none;
@@ -70,18 +87,26 @@ body {
   cursor: pointer;
 }
 
-.reset-button:hover {
-  box-shadow: inset 0 -3px 0 rgba(0,0,0,0.15);
-  transition: all .1s ease;
+.buttons:hover {
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,1.15);
+  transition: all .5s ease;
 }
 
-.reset-button:active {
+.buttons:active {
   transform: translateY(1px);
-  box-shadow: inset 0 3px 0 0 rgba(0,0,0,0.15);
+  box-shadow: inset 0 3px 0 0 rgba(0,0,0,1.15);
 }
 
-.reset-button:focus {
+.buttons:focus {
   outline: none;
 }
 
-
+.round{
+  width: 120px;
+  border-radius: 50%;
+  height: 60px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  background-color: rgba(48, 47, 47, 0.144);
+}
