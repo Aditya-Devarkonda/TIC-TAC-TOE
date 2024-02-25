@@ -3,24 +3,56 @@ import React from "react";
 
 export default function Board() {
 
-  const [squareValues, setSquarevalues] = React.useState([Array(9).fill(null)]);
-  const [firstMove, setFirstmove] = React.useState('X') 
+  const [squareValues, setSquarevalues] = React.useState(Array(9).fill(null));
+  const [currentMove, setCurrentMove] = React.useState(true) ;
 
-  function toggleSquareValue(){
-
+  function toggleMove(currentMove){
+    setCurrentMove(prevmove=> !prevmove)
+    return currentMove ? 'X':'O';
   }
+  
+  function toggleSquareValue(squareNumber){
+    if(calculateWinner(squareValues)||squareValues[squareNumber])
+    {
+      return
+    }
+    const tempArray = squareValues.slice();
+    tempArray[squareNumber]= toggleMove(currentMove)
+    setSquarevalues(tempArray)
+  }
+  
+  function calculateWinner(squareLines){
+    const winningLines = [
+      [0,1,2],
+      [3,4,5],
+      [6,7,8],
+      [0,3,6],
+      [1,4,7],
+      [2,5,8],
+      [0,4,8],
+      [2,4,6],
+    ];
+    for(let i=0; i<winningLines.length; i++){
+      const[a,b,c]=winningLines[i]
+      if(squareLines[a] && squareLines[a]===squareLines[b] && squareLines[b]===squareLines[c]){
+        return squareLines[a];
+      }
+    }
+    return null;
+  }
+
+  console.log(squareValues);
 
   return (
     <div className="board-table">
-        <Square value={squareValues[0]} clas="square s1" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[1]} clas="square s2" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[2]} clas="square s3" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[3]} clas="square s4" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[4]} clas="square s5" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[5]} clas="square s6" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[6]} clas="square s7" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[7]} clas="square s8" toggleFunction={toggleSquareValue}/>
-        <Square value={squareValues[8]} clas="square s9" toggleFunction={toggleSquareValue}/>
+      {squareValues.map((value, index) => (
+        <Square
+          key={index}
+          value={value}
+          clas={`square s${index + 1}`}
+          toggleFunction={() => toggleSquareValue(index)}
+        />
+      ))}
     </div>
   )
 }
