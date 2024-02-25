@@ -41,18 +41,25 @@ export default function Board() {
     return null;
   }
 
+  function ResetSquareValues(){
+    setSquarevalues(Array(9).fill(null))
+  }
+
   console.log(squareValues);
 
   return (
-    <div className="board-table">
-      {squareValues.map((value, index) => (
-        <Square
-          key={index}
-          value={value}
-          clas={`square s${index + 1}`}
-          toggleFunction={() => toggleSquareValue(index)}
-        />
-      ))}
+    <div className="game-layout">
+      <div className="board-table">
+        {squareValues.map((value, index) => (
+          <Square
+            key={index}
+            value={value}
+            clas={`square s${index + 1}`}
+            toggleFunction={() => toggleSquareValue(index)}
+          />
+        ))}
+      </div>
+      <button onClick={ResetSquareValues} className="reset-button">Reset Board</button>
     </div>
   )
 }
