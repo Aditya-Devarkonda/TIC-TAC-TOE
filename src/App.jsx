@@ -3,9 +3,17 @@ import React from "react";
 
 export default function Board() {
 
-  const [squareValues, setSquarevalues] = React.useState(Array(9).fill(null));
+  // const [squareValues, setSquarevalues] = React.useState(Array(9).fill(null));
   const [currentMove, setCurrentMove] = React.useState(true) ;
   const [winnerName,setWinnerName] = React.useState("Let's Start");
+  const [allStepSquareValues, setAllSetSquareValues] = React.useState([Array(9).fill(null)])
+  const currentStepSquareValues =(allStepSquareValues[allStepSquareValues.length -1])
+  // const [currentStepSquareValues, setCurrentStepSquareValues]=React.useState(allStepSquareValues[allStepSquareValues.length -1]);
+
+  // function GetCurrentStepSquareValues(allStepSquareValues){
+  //   const currentStepSquareValues =(allStepSquareValues[allStepSquareValues.length -1])
+  //   return currentStepSquareValues
+  // }
 
   function toggleMove(currentMove){
     setCurrentMove(prevmove=> !prevmove)
@@ -13,14 +21,14 @@ export default function Board() {
   }
   
   function toggleSquareValue(squareNumber){
-    if(calculateWinner(squareValues)||squareValues[squareNumber])
+    if(calculateWinner(currentStepSquareValues)||currentStepSquareValues[squareNumber])
     {
       return
     }
 
-    const tempArray = squareValues.slice();
+    const tempArray = currentStepSquareValues.slice();
     tempArray[squareNumber]= toggleMove(currentMove)
-    setSquarevalues(tempArray)
+    setAllSetSquareValues([...allStepSquareValues,tempArray])
 
     const winner = calculateWinner(tempArray);
     if (winner) {
@@ -55,11 +63,11 @@ export default function Board() {
   }
 
   function ResetSquareValues(){
-    setSquarevalues(Array(9).fill(null))
-    setWinnerName("Let's Start");
+    
   }
 
-  console.log(squareValues);
+  console.log(allStepSquareValues);
+  console.log(currentStepSquareValues);
 
   return(
     <div className="game-layout">
@@ -69,7 +77,7 @@ export default function Board() {
       <div className="main-area">
         <div className="winner-announcement">{winnerName}</div>
         <div className="board-table">
-          {squareValues.map((value, index) => (
+          {currentStepSquareValues.map((value, index) => (
             <Square
               key={index}
               value={value}
