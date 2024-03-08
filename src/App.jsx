@@ -3,17 +3,11 @@ import React from "react";
 
 export default function Board() {
 
-  // const [squareValues, setSquarevalues] = React.useState(Array(9).fill(null));
   const [currentMove, setCurrentMove] = React.useState(true) ;
   const [winnerName,setWinnerName] = React.useState("Let's Start");
-  const [allStepSquareValues, setAllSetSquareValues] = React.useState([Array(9).fill(null)])
-  const currentStepSquareValues =(allStepSquareValues[allStepSquareValues.length -1])
-  // const [currentStepSquareValues, setCurrentStepSquareValues]=React.useState(allStepSquareValues[allStepSquareValues.length -1]);
-
-  // function GetCurrentStepSquareValues(allStepSquareValues){
-  //   const currentStepSquareValues =(allStepSquareValues[allStepSquareValues.length -1])
-  //   return currentStepSquareValues
-  // }
+  const [allStepSquareValues, setAllStepSquareValues] = React.useState([Array(9).fill(null)])
+  const [deletedSteps, setDeletedSteps] = React.useState([]);
+  const currentStepSquareValues = (allStepSquareValues[allStepSquareValues.length -1])
 
   function toggleMove(currentMove){
     setCurrentMove(prevmove=> !prevmove)
@@ -28,8 +22,9 @@ export default function Board() {
 
     const tempArray = currentStepSquareValues.slice();
     tempArray[squareNumber]= toggleMove(currentMove)
-    setAllSetSquareValues([...allStepSquareValues,tempArray])
-
+    setAllStepSquareValues([...allStepSquareValues,tempArray])
+    
+    
     const winner = calculateWinner(tempArray);
     if (winner) {
       setWinnerName(`${winner} is a winner`);
@@ -63,11 +58,26 @@ export default function Board() {
   }
 
   function ResetSquareValues(){
-    
+    setCurrentMove(true) ;
+    setWinnerName("Let's Start");
+    setAllStepSquareValues([Array(9).fill(null)])
   }
 
-  console.log(allStepSquareValues);
-  console.log(currentStepSquareValues);
+  function UndoStep(){
+    const tempAllStepSquareValues = JSON.parse(JSON.stringify(allStepSquareValues));
+    setAllStepSquareValues(tempAllStepSquareValues.slice(0,-1));
+    const temp = [...deletedSteps,tempAllStepSquareValues.slice(-1)];
+    setDeletedSteps(temp);
+  }
+
+  function RedoStep(){
+
+    if (deletedSteps.length === 0) return; // No steps to redo
+    const tempDeletedSteps = JSON.parse(JSON.stringify(deletedSteps));
+    const tempDeletedSteps2 = tempDeletedSteps.map(array=>array.flat());
+    setAllStepSquareValues(tempDeletedSteps2);
+    setDeletedSteps(tempDeletedSteps2.slice(0,-1))
+  }
 
   return(
     <div className="game-layout">
@@ -87,9 +97,9 @@ export default function Board() {
           ))}
         </div>
         <div className="All-buttons">
-          <button className="previous round buttons">⬅ Prev step</button>
-          <button onClick={ResetSquareValues} className="reset buttons">Reset Board</button>
-          <button className="next round buttons">Next step ⮕</button>
+          <button className="previous round buttons" onClick={UndoStep}>⬅ Undo move</button>
+          <button onClick={ResetSquareValues} className="reset buttons">New Game</button>
+          <button className="next round buttons" onClick={RedoStep}>Redo move ⮕</button>
         </div>
       </div>
       <div className="right-area">
