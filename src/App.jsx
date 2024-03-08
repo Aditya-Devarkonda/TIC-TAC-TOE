@@ -1,3 +1,5 @@
+import LeftArea from "./components/LeftArea";
+import RightArea from "./components/RightArea";
 import { Square } from "./components/Square";
 import React from "react";
 
@@ -23,18 +25,20 @@ export default function Board() {
     const tempArray = currentStepSquareValues.slice();
     tempArray[squareNumber]= toggleMove(currentMove)
     setAllStepSquareValues([...allStepSquareValues,tempArray])
-    
-    
-    const winner = calculateWinner(tempArray);
-    if (winner) {
-      setWinnerName(`${winner} is a winner`);
-    } else {
-      if (!tempArray.includes(null)) {
-        setWinnerName("No winner");
+  
+    function checkWinner(){
+      const winner = calculateWinner(tempArray);
+      if (winner) {
+        setWinnerName(`${winner} is a winner`);
       } else {
-        setWinnerName(`Next move: ${currentMove ? 'O' : 'X'}`);
+        if (!tempArray.includes(null)) {
+          setWinnerName("No winner");
+        } else {
+          setWinnerName(`Next move: ${currentMove ? 'O' : 'X'}`);
+        }
       }
     }
+    checkWinner ()
   }
 
   function calculateWinner(squareLines){
@@ -64,10 +68,13 @@ export default function Board() {
   }
 
   function UndoStep(){
+    if (allStepSquareValues.length === 1) return;
     const tempAllStepSquareValues = JSON.parse(JSON.stringify(allStepSquareValues));
     setAllStepSquareValues(tempAllStepSquareValues.slice(0,-1));
     const temp = [...deletedSteps,tempAllStepSquareValues.slice(-1)];
     setDeletedSteps(temp);
+    toggleMove(currentMove)
+    checkWinner ()
   }
 
   function RedoStep(){
@@ -77,12 +84,14 @@ export default function Board() {
     const tempDeletedSteps2 = tempDeletedSteps.map(array=>array.flat());
     setAllStepSquareValues(tempDeletedSteps2);
     setDeletedSteps(tempDeletedSteps2.slice(0,-1))
+    toggleMove(currentMove)
+
   }
 
   return(
     <div className="game-layout">
       <div className="left-area">
-
+        <LeftArea />
       </div>
       <div className="main-area">
         <div className="winner-announcement">{winnerName}</div>
@@ -103,7 +112,7 @@ export default function Board() {
         </div>
       </div>
       <div className="right-area">
-
+            <RightArea />
       </div>
     </div>
   )

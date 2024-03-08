@@ -1,9 +1,12 @@
+import 
+
 * {
   box-sizing: border-box;
 }
 
 body {
   font-family: sans-serif;
+  color: black;
   padding: 0;
   margin: 0;
   width: 100%;
@@ -16,6 +19,7 @@ body {
 #root, .game-layout{
   width: 100%;
   height: 100vh;
+  /* background-color: rgba(0, 0, 0, 0.163); */
 }
 
 .game-layout{
@@ -24,6 +28,7 @@ body {
 }
 
 .main-area{
+  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,11 +52,12 @@ body {
 }
 
 .square{
-  background-color: rgba(255, 192, 203, 0.448);
+  background-color: rgba(19, 14, 27, 0.9);
   border: none;
-  border-right: 5px solid black;
-  border-bottom: 5px solid black;
-  font-size: 100px;
+  color: white;
+  border-right: 5px solid rgba(255, 255, 255, 0.555);
+  border-bottom: 5px solid rgba(255, 255, 255, 0.555);
+  font-size: 130px;
   padding: 0;
   margin: 0;
   text-align: center;
@@ -74,6 +80,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around;
+  color: white;
 }
 
 .reset{
@@ -81,11 +88,12 @@ body {
   height: 45px;
   width: 155px;
   font-size: 20px;
-  background-color: rgba(100, 148, 237, 0.442);
+  background-color: rgb(100, 148, 237);
   border: none;
   border-radius: 30px;
   cursor: pointer;
   box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6); /*Add a shadow outside effect on hover*/
+  color: white;
 }
 
 .buttons:hover {
@@ -109,7 +117,8 @@ body {
   font-size: 17px;
   border: none;
   cursor: pointer;
-  background-color: rgba(48, 47, 47, 0.144);
+  background-color: rgb(48, 47, 47);
   /* box-shadow: inset 0 -3px 0 rgba(0,0,0,1.15); */
   box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.6); /*Add a shadow outside effect on hover*/
+  color: white;
 }
