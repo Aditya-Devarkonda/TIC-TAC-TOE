@@ -5,7 +5,7 @@
 }
 .left-cont{
   min-width: 90%;
-  min-height: 90%;
+  min-height: 95%;
   display: flex;
   flex-direction: column;
   justify-content:space-between;
@@ -16,12 +16,14 @@
     /* margin-bottom: 10%;
     margin-top: 10%;
     margin-left: 20px; */
-    width: 330px;
-    height: 330px;
+    width: 250px;
+    height: 370px;
+    margin-left: 10%;
     display: flex;
     flex-direction: column;
     justify-content:space-around;
-    align-items:center;
+    align-items: center;
+    text-align: center;
     /* color: white; */
     color: rgba(255, 255, 255, 0.684);
     border: 0.5px solid #ccc;
@@ -29,9 +31,30 @@
     /* background-color:rgba(44, 43, 62, 0.991); */
 }
 
+.name-heading{
+    font-size: 30px;
+    font-weight:bold;
+}
+
+.label{
+    font-size: 23px;
+    padding-bottom: 10px;
+}
+
+.input{
+    width: 75%;
+    height: 40px;
+    border-radius: 0.707rem;
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+}
+
 .rule-container{
-    width: 330px;
-    height: 330px;
+    width: 250px;
+    height: 300px;
+    margin-left: 10%;
     display: flex;
     flex-direction: column;
     justify-content:center;
@@ -44,30 +67,10 @@
     /* background-color: #f0f0f0; */
 }
 
-.heading{
-    font-size: 30px;
-    font-weight:bold;
-}
-
 .rule-heading{
     margin-bottom: 0;
     font-size: 30px;
     font-weight:400;
-}
-
-.label{
-    font-size: 23px;
-    padding-bottom: 10px;
-}
-
-.input{
-    width: 70%;
-    height: 70px;
-    border-radius: 0.707rem;
-    margin-bottom: 30px;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
 }
 
 .rule-points{

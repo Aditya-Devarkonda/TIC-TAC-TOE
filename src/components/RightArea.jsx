@@ -1,18 +1,19 @@
+// RightArea.jsx
+
 import React from 'react';
 
-function ScoreCard (){
+export default function ScoreCard ({playerXName, playerOName, scoreX, scoreO}){
+
     return (
       <div className="score-card">
         <div className="player-card">
-          <h2 className='player-name'>Player X</h2>
-          <div className="score">{5}</div>
+          <h2 className='player-name'>{playerXName}</h2>
+          <div className="score">{scoreX}</div>
         </div>
         <div className="player-card">
-          <h2 className='player-name'>Player O</h2>
-          <div className="score">{0}</div>
+          <h2 className='player-name'>{playerOName}</h2>
+          <div className="score">{scoreO}</div>
         </div>
       </div>
     );
-  };
-  
-  export default ScoreCard;
+};

@@ -1,19 +1,29 @@
 import React from 'react';
 
-function LeftArea () {
+function LeftArea ({setPlayerXName,setPlayerOName}) {
     return (
         <div className='left-cont'>
             <div className='name-container container'>
-                <p className='heading'>Enter Players Name</p>
+                <h2 className='name-heading'>Enter Players Name</h2>
         
                 <label htmlFor="playerX" className='Xlabel label'>Player X name</label>
                 <br></br>
-                <input type="text" id='playerX' className='Xinput input' />
+                <input
+                    type="text"
+                    id="playerX"
+                    className="Xinput input"
+                    onChange={(e) => setPlayerXName(e.target.value)}
+                />
             
         
                 <label htmlFor="playerO" className='Olabel label'>Player O name</label>
                 <br></br>
-                <input type="text" id='playerO' className='Oinput input'/>
+                <input
+                    type="text"
+                    id="playerO"
+                    className="Oinput input"
+                    onChange={(e) => setPlayerOName(e.target.value)}
+                />
            </div>
            <div className='rule-container container'>
                 <p className='rule-heading'>Game rules</p>
