@@ -26,10 +26,10 @@ function LeftArea ({setPlayerXName,setPlayerOName}) {
                 />
            </div>
            <div className='rule-container container'>
-                <p className='rule-heading'>Game rules</p>
+                <p className='rule-heading'>Instructions</p>
                 <ol className='rule-points'>
-                    <li className='point1'>Each player will get first chance to play</li>
-                    <li className='point'>Best of 5 will be calculated to decide the winner.</li>
+                    <li className='point1'>Use new game button to play again.</li>
+                    <li className='point'>Use undo button to go backward in steps & Redo to go forward after undo.</li>
                 </ol>
            </div>
            
