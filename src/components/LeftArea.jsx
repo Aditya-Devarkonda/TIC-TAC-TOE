@@ -29,7 +29,7 @@ function LeftArea ({setPlayerXName,setPlayerOName}) {
                 <p className='rule-heading'>Instructions</p>
                 <ol className='rule-points'>
                     <li className='point1'>Use new game button to play again.</li>
-                    <li className='point'>Use undo button to go backward in steps & Redo to go forward after undo.</li>
+                    <li className='point'>Whoever wins will get first chance in next game.</li>
                 </ol>
            </div>
            

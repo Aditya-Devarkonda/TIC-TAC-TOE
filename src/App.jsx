@@ -69,7 +69,7 @@ export default function Board() {
   }
 
   function ResetSquareValues() {
-    setCurrentMove(true);
+    setCurrentMove(prevMove => !prevMove);
     setWinnerName("Let's Start");
     setAllStepSquareValues([Array(9).fill(null)]);
     setDeletedSteps([]);
